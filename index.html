@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" href="./styles.css">
+	<script src="https://www.desmos.com/api/v1.7/calculator.js?apiKey=dcb31709b452b1cf9dc26972add0fda6"></script>
+	<script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+	<title>Casio QR Code Reader</title>
+</head>
+<body>
+	<center>
+		<h1>Casio fx-991EX QR Code Reader</h1>
+		<input type="text" id="inputField" placeholder="Enter the url from the QR code" title="Enter the url from the QR code"><br>
+		<input type="text" id="rawField" placeholder="Enter equation (LaTeX format)" title="Enter equation (LaTeX format)"><br>
+		<button id="submitButton" type="button">Read URL</button>
+		<button id="equationButton" type="button">Read Equation</button>
+		<button id="graphButton" type="button">Graph</button>
+		<div id="equation" contenteditable="true" style="outline: none;"></div><br>
+		<div id="graph"></div>
+	</center>
+	<script src="./parse.js"></script>
+	<script src="./graph.js"></script>
+	<script>
+		document.getElementById('equationButton').onclick = function(){
+			document.getElementById('equation').innerHTML = "$$" + document.getElementById('rawField').value + "$$";
+			MathJax.Hub.Queue(["Typeset", MathJax.Hub]);
+		}
+	</script>
+</body>
+</html>
